@@ -12,9 +12,7 @@ use DateTime;
 
 
 class AttendanceController extends Controller
-{      
-
-
+{   
 	public function post_login_logout(Request $request)
     	{
         $input = $request->all();
@@ -22,12 +20,13 @@ class AttendanceController extends Controller
         $local_ip = trim($input['local_ip']);
         $common_ip = (trim($input['common_ip'])) ? trim($input['common_ip']):"";
 
-        $user = User::select('id')
+        $user = User::select('id','local_ip')
                             ->where('job_id', $job_id)
                             ->where('local_ip', $local_ip)
                             ->where('status', '!=', 'cancel')
                             ->first();
-        $user_id =$user->id;
+        if($user){        
+        $user_id =$user->id; 
         $date =new DateTime(); 
         $current_date_time=$date->format('Y-m-d H:i:s');
         $current_date=$date->format('Y-m-d');
@@ -46,7 +45,6 @@ class AttendanceController extends Controller
                                 ->where('user_id', $user_id)
                                 ->count();
             if($checkIn < 1 ){
-
                 $loginArray=[
                             'user_id' => $user_id,
                             'in_time' => $current_date_time,
@@ -86,11 +84,9 @@ class AttendanceController extends Controller
         try {
             if($checkIn < 1)
             {
-
                 Attendence::insert($loginArray);
             	Session::flash('message', 'Successfully Loged In!');
                 DB::commit();
-
             }else{
 
                 if($checkOut)
@@ -98,7 +94,6 @@ class AttendanceController extends Controller
                 	$AttendenceModel->update();
                 	Session::flash('message', 'Successfully Logout!');
                 	DB::commit();
-
                 }
             }
 
@@ -110,7 +105,9 @@ class AttendanceController extends Controller
       }else{
             Session::flash('message', 'Your attendance already done!'); 
            } 
-   
+     }else{
+        Session::flash('message', 'Your are not in your computer!!!');
+     }
         return redirect()->back();
     }
 
