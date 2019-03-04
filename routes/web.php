@@ -34,13 +34,13 @@ Route::get('individual-employee-attendance/{id}', [
 'uses' => 'HomeController@individual_attendance'
 ]);
 
-Route::get('edit-employee/{id}', [
+Route::any('edit-employee/{id}', [
 'as' => 'admin.edit.employee',
-'uses' => 'HomeController@edit_employee'
+'uses' => 'ProfileController@edit_employee'
 ]);
 
 
 Route::get('edit-profile/{id}', [
 'as' => 'staff.edit.profile',
-'uses' => 'HomeController@edit_profile'
+'uses' => 'ProfileController@edit_profile'
 ]);

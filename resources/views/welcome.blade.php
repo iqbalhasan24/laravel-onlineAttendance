@@ -85,8 +85,8 @@
 
                                     <div class="col-md-6">
                                         <input id="job_id" type="text" class="form-control{{ $errors->has('job_id') ? ' is-invalid' : '' }}" name="job_id" value="{{ old('job_id') }}" placeholder="User ID" required autofocus>
-                                        <input type="hidden" name="local_ip" value="<?php echo getHostByName(getHostName());?>">
                                         <input type="hidden" name="common_ip" value="<?php echo  $_SERVER['REMOTE_ADDR']; ?>">
+                                        <input type="hidden" name="local_ip" value="<?php echo getHostByName(getHostName());?>">
                                         @if ($errors->has('job_id'))
                                             <span class="invalid-feedback" role="alert">
                                                 <strong>{{ $errors->first('job_id') }}</strong>
@@ -95,6 +95,14 @@
                                          <button type="submit" class="btn btn-primary">
                                             {{ __('Login') }}
                                         </button>
+                                    </div>
+
+                                    <div class="col-md-6">
+                                        <h2 style="color: #f00;"> 
+                                          @if(session('message'))
+                                          {{session('message')}}
+                                        @endif
+                                        </h2>
                                     </div>
                             </div>
                     </form>

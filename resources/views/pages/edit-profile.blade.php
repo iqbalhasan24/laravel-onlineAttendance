@@ -13,33 +13,35 @@
                 <div class="card-body">
 
                 <form>
-
-
+                   @if(isset($formdata))                 
+                 
                     <div class="row">  
                       <div class="col-md-3">  
                          <div class="form-group">
                             <label for="first_name">First Name</label>
-                            <input type="text"  name="first_name" class="form-control form-control-square" id="first_name" placeholder="Enter First Name">
+                             <input id="first_name" type="text" class="form-control" name="first_name" value="{{ old( 'department_name', $formdata->first_name) }}" required autofocus>
                          </div>
                       </div>
 
                       <div class="col-md-3"> 
                          <div class="form-group">
                             <label for="input-13">Last Name</label>
-                            <input type="text"  name="last_name" class="form-control form-control-square" id="input-13" placeholder="Enter Last Name">
+                            <input type="text"  name="last_name" class="form-control form-control-square" id="input-13" value="{{$formdata->last_name }}">
                          </div>
                       </div>
-
-
 
 
                       <div class="col-md-3"> 
                           <div class="form-group" data-select2-id="57">
                             <label>Gender</label>
-                            <select name="sex" class="form-control single-select select2-hidden-accessible" >
-                                <option value="male">Male</option>
-                                <option value="female">Female</option>
-                                <option value="common">Common</option>
+                              <select class="form-control" name="sex" >
+                              <?php $se_lists = ['male', 'female']; ?>
+                              @foreach($se_lists as $se_list)
+                              <option value="{{$formdata->sex}}" @if(old('sex', $formdata->sex) == $se_list )  @endif > 
+                                  {{ ucfirst( $se_list) }}
+                              </option>
+                              @endforeach
+
                             </select>
                           </div>
                       </div>
@@ -47,70 +49,72 @@
                       <div class="col-md-3"> 
                          <div class="form-group">
                             <label for="input-13">Date Of Birth</label>
-                            <input type="text" id="autoclose-datepicker" name="dob" class="form-control">
+                            <input type="text" id="autoclose-datepicker" name="dob" class="form-control" value="{{$formdata->dob }}">
                          </div>
                       </div>
-                   </div>   
-
-
+                   </div>  
                       <div class="row">
                       <div class="col-md-3">  
                          <div class="form-group">
                             <label for="department_name">Department </label>
-                            <input type="text"  name="department_name" class="form-control form-control-square" id="department_name" placeholder="Enter Department ">
+                            <input type="text"  name="department_name" class="form-control form-control-square" id="department_name" value="{{ old( 'department_name', $formdata->department_name) }}">
                          </div>
                       </div>
 
                       <div class="col-md-3"> 
                           <div class="form-group" data-select2-id="57">
                             <label>Staff Type</label>
-                            <select name="user_role" class="form-control single-select select2-hidden-accessible" >
-                                <option value="oparetor">Oparetor</option>
-                                <option value="staff">Staff</option>
+                            <select class="form-control" name="user_role" >
+                              <?php $lists = ['admin', 'oparetor', 'staff']; ?>
+                              @foreach($lists as $list)
+
+                              <option value="{{$formdata->user_role}}" @if(old('user_role', $formdata->user_role) == $list )  @endif > 
+                                  {{ ucfirst( $list) }}
+                              </option>
+                              @endforeach
+
                             </select>
+
                           </div>
                       </div>
 
                       <div class="col-md-3"> 
                           <div class="form-group" data-select2-id="57">
-                            <label>Staff Type</label>
-                            <select name="user_role" class="form-control single-select select2-hidden-accessible" >
-                                <option value="active">Active</option>
-                                <option value="inactive">Inactive</option>
-                                <option value="cancel">Cancel</option>
+                            <label>Status</label>
+                            <select class="form-control" name="status" >
+                              <?php $sta_lists = ['active', 'inactive', 'cancel']; ?>
+                              @foreach($sta_lists as $sta_list)
+
+                              <option value="{{$formdata->status}}" @if(old('status', $formdata->status) == $sta_list )  @endif > 
+                                  {{ ucfirst( $sta_list) }}
+                              </option>
+                              @endforeach
+
                             </select>
                           </div>
                       </div>
                       <div class="col-md-3">  
                          <div class="form-group">
                             <label for="job_id">Employee ID </label>
-                            <input type="text"  name="job_id" class="form-control form-control-square" id="department_name" placeholder="Enter Department ">
+                            <input type="text"  name="job_id" class="form-control form-control-square" id="job_id" value="{{ old( 'job_id', $formdata->job_id) }}">
                          </div>
                       </div>
                      
                     </div>
 
                      <div class="row">
-
-
                       <div class="col-md-3"> 
                           <div class="form-group" data-select2-id="57">
                             <label for="local_ip">Device IP</label>
-                            <input type="text"  name="local_ip" class="form-control form-control-square" id="department_name" placeholder="Enter Department ">
+                            <input type="text"  name="local_ip" class="form-control form-control-square" id="local_ip" value="{{ old( 'local_ip', $formdata->local_ip) }}">
                           </div>
                       </div>
 
                       <div class="col-md-3"> 
                           <div class="form-group" data-select2-id="57">
                             <label for="password">Password</label>
-                            <input type="text"  name="password" class="form-control form-control-square" id="password" placeholder="Enter Password ">
+                            <input type="password"  name="password" class="form-control form-control-square" id="password" placeholder="Enter Password ">
                             
-                          </div>
-                      </div>
-                      <div class="col-md-3"> 
-                          <div class="form-group" data-select2-id="57">
-                            <label for="repassword">Retype Password</label>
-                            <input type="text"  name="repassword" class="form-control form-control-square" id="repassword" placeholder="Enter Password ">
                           </div>
                       </div>
 
@@ -124,13 +128,12 @@
                     <div class="row">
                     <div class="col-md-12"> 
                       <div class="form-group">
-                       <button type="submit" class="btn btn-primary shadow-primary btn-square px-5 pull-right"><i class="icon-lock"></i> Save</button> 
+                       <button type="submit" class="btn btn-primary shadow-primary btn-square px-5"><i class="icon-lock"></i> Save</button> 
                        </div>
                       </div>
                     </div>
+                @endif
                   </form>
-
-
                 </div>
             </div>
           </div>
@@ -161,8 +164,7 @@
                         <td>Education</td>
                         <td>Education</td>
                         <td>24.00</td>
-                        <td><a href=""> Edit</a> </td>
-                        
+                        <td><a href=""> Edit</a> </td>                       
                     </tr>
                     
                 </tbody>

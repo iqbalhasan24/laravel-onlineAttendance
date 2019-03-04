@@ -46,7 +46,7 @@
                                 <td> {{ $values->job_id }} </td>
                                 <td>{{ $values->local_ip}}</td>
                                 <td>{{ $values->last_name}}</td>
-                                <td><a href=""> Edit</a> </td>                                
+                                <td><a href="{{ route('admin.edit.employee', $values->id) }}"> Edit</a> </td>                                
                             </tr>
                           @endforeach
                       @endif    

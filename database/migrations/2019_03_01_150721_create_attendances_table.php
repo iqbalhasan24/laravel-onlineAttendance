@@ -18,8 +18,8 @@ class CreateAttendancesTable extends Migration
             $table->integer('user_id');
             $table->datetime('in_time');
             $table->datetime('out_time');
-            $table->datetime('common_ip')->nullable()->default(NULL);
-            $table->string('total_hour');
+            $table->string('common_ip')->nullable()->default(NULL);
+            $table->float('total_hour')->nullable();
             $table->date('attendance_in');
             $table->timestamps();
         });
