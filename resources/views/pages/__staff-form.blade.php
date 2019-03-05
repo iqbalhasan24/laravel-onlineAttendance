@@ -1,114 +1,225 @@
-          <div class="row">  
-            <div class="col-md-3">  
-               <div class="form-group">
-                  <label for="first_name">First Name</label>
-                  <input type="text"  name="first_name" class="form-control form-control-square" id="first_name" placeholder="Enter First Name">
-               </div>
-            </div>
+ @csrf
 
-            <div class="col-md-3"> 
-               <div class="form-group">
-                  <label for="input-13">Last Name</label>
-                  <input type="text"  name="last_name" class="form-control form-control-square" id="input-13" placeholder="Enter Last Name">
-               </div>
-            </div>
+                        
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group row">
+                                    <label for="name" class="col-md-4 col-form-label text-md-right">{{ __('First Name') }}</label>
 
+                                    <div class="col-md-8">
+                                        <input id="first_name" type="text" class="form-control{{ $errors->has('first_name') ? ' is-invalid' : '' }}" name="first_name" value="{{ old('first_name') }}" required autofocus>
 
+                                        @if ($errors->has('first_name'))
+                                            <span class="invalid-feedback" role="alert">
+                                                <strong>{{ $errors->first('first_name') }}</strong>
+                                            </span>
+                                        @endif
+                                    </div>
+                                </div>                                
+                            </div>
+                               <div class="col-md-6">
+                                <div class="form-group row">
+                                    <label for="name" class="col-md-4 col-form-label text-md-right">{{ __('Last Name') }}</label>
 
+                                    <div class="col-md-8">
+                                        <input id="last_name" type="text" class="form-control{{ $errors->has('last_name') ? ' is-invalid' : '' }}" name="last_name" value="{{ old('last_name') }}" required autofocus>
 
-            <div class="col-md-3"> 
-                <div class="form-group" data-select2-id="57">
-                  <label>Gender</label>
-                  <select name="sex" class="form-control single-select select2-hidden-accessible" >
-                      <option value="male">Male</option>
-                      <option value="female">Female</option>
-                      <option value="common">Common</option>
-                  </select>
-                </div>
-            </div>
-
-            <div class="col-md-3"> 
-               <div class="form-group">
-                  <label for="input-13">Date Of Birth</label>
-                  <input type="text" id="autoclose-datepicker" name="dob" class="form-control">
-               </div>
-            </div>
-         </div>   
-
-
-            <div class="row">
-            <div class="col-md-3">  
-               <div class="form-group">
-                  <label for="department_name">Department </label>
-                  <input type="text"  name="department_name" class="form-control form-control-square" id="department_name" placeholder="Enter Department ">
-               </div>
-            </div>
-
-            <div class="col-md-3"> 
-                <div class="form-group" data-select2-id="57">
-                  <label>Staff Type</label>
-                  <select name="user_role" class="form-control single-select select2-hidden-accessible" >
-                      <option value="oparetor">Oparetor</option>
-                      <option value="staff">Staff</option>
-                  </select>
-                </div>
-            </div>
-
-            <div class="col-md-3"> 
-                <div class="form-group" data-select2-id="57">
-                  <label>Staff Type</label>
-                  <select name="user_role" class="form-control single-select select2-hidden-accessible" >
-                      <option value="active">Active</option>
-                      <option value="inactive">Inactive</option>
-                      <option value="cancel">Cancel</option>
-                  </select>
-                </div>
-            </div>
-            <div class="col-md-3">  
-               <div class="form-group">
-                  <label for="job_id">Employee ID </label>
-                  <input type="text"  name="job_id" class="form-control form-control-square" id="department_name" placeholder="Enter Department ">
-               </div>
-            </div>
-           
-          </div>
-
-           <div class="row">
+                                        @if ($errors->has('last_name'))
+                                            <span class="invalid-feedback" role="alert">
+                                                <strong>{{ $errors->first('last_name') }}</strong>
+                                            </span>
+                                        @endif
+                                   </div>
+                               </div>
+                            </div>   
+                        </div>
 
 
-            <div class="col-md-3"> 
-                <div class="form-group" data-select2-id="57">
-                  <label for="local_ip">Device IP</label>
-                  <input type="text"  name="local_ip" class="form-control form-control-square" id="department_name" placeholder="Enter Department ">
-                </div>
-            </div>
 
-            <div class="col-md-3"> 
-                <div class="form-group" data-select2-id="57">
-                  <label for="password">Password</label>
-                  <input type="text"  name="password" class="form-control form-control-square" id="password" placeholder="Enter Password ">
-                  
-                </div>
-            </div>
-            <div class="col-md-3"> 
-                <div class="form-group" data-select2-id="57">
-                  <label for="repassword">Retype Password</label>
-                  <input type="text"  name="repassword" class="form-control form-control-square" id="repassword" placeholder="Enter Password ">
-                </div>
-            </div>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group row">
+                                    <label for="name" class="col-md-4 col-form-label text-md-right">{{ __('Date of Birth') }}</label>
 
-             <div class="col-md-3"> 
-               <div class="form-group">
-                  <label for="input-13">Photo</label>
-                  <input type="file" class="form-control" name="">
-               </div>
-            </div>
-          </div>
-          <div class="row">
-          <div class="col-md-12"> 
-            <div class="form-group">
-             <button type="submit" class="btn btn-primary shadow-primary btn-square px-5 pull-right"><i class="icon-lock"></i> Save</button> 
-             </div>
-            </div>
-          </div>
-             
+                                    <div class="col-md-8">
+                                        <input id="dob" type="date" class="form-control{{ $errors->has('dob') ? ' is-invalid' : '' }}" name="dob" value="{{ old('dob') }}" required autofocus>
+
+                                        @if ($errors->has('dob'))
+                                            <span class="invalid-feedback" role="alert">
+                                                <strong>{{ $errors->first('dob') }}</strong>
+                                            </span>
+                                        @endif
+                                    </div>
+                                </div>                            
+                            </div>
+                            <div class="col-md-6">                                
+                                 <div class="form-group row">
+                                    <label for="name" class="col-md-4 col-form-label text-md-right">{{ __('Department') }}</label>
+
+                                    <div class="col-md-8">
+                                        <input id="department_name" type="text" class="form-control{{ $errors->has('department_name') ? ' is-invalid' : '' }}" name="department_name" value="{{ old('department_name') }}" required autofocus>
+
+                                        @if ($errors->has('department_name'))
+                                            <span class="invalid-feedback" role="alert">
+                                                <strong>{{ $errors->first('department_name') }}</strong>
+                                            </span>
+                                        @endif
+                                    </div>
+                                </div>
+                            </div>    
+                        </div>
+                            
+
+                        <div class="row">
+                            <div class="col-md-6">
+                            
+                                <div class="form-group row">
+                                    <label for="user_role" class="col-md-4 col-form-label text-md-right">{{ __('User Role') }}</label>
+
+                                    <div class="col-md-8">
+                                        <select name="user_role" class="form-group form-control">
+                                              <option value="admin">Admin</option>
+                                              <option value="oparetor">Oparetor</option>
+                                              <option value="staff">Staff</option>     
+                                        </select>
+
+
+
+                                        @if ($errors->has('user_role'))
+                                            <span class="invalid-feedback" role="alert">
+                                                <strong>{{ $errors->first('user_role') }}</strong>
+                                            </span>
+                                        @endif
+                                    </div>
+                                </div>
+                            </div>
+                           <div class="col-md-6">
+                                 <div class="form-group row">
+                                    <label for="status" class="col-md-4 col-form-label text-md-right">{{ __('Status') }}</label>
+
+                                    <div class="col-md-8">
+                                        <select name="status" class="form-group form-control">
+                                              <option value="active">Active</option>
+                                              <option value="inactive">Inactive</option>
+                                              <option value="cancle">Cancel</option>     
+                                        </select>
+
+                                        @if ($errors->has('status'))
+                                            <span class="invalid-feedback" role="alert">
+                                                <strong>{{ $errors->first('status') }}</strong>
+                                            </span>
+                                        @endif
+                                    </div>
+                                </div>
+                            </div>    
+                        </div>
+                        
+
+
+                        <div class="row">
+                           <div class="col-md-6">
+                                 <div class="form-group row">
+                                    <label for="job_id" class="col-md-4 col-form-label text-md-right">{{ __('Sex') }}</label>
+
+                                    <div class="col-md-8">
+                                        <select name="sex" class="form-group form-control">
+                                              <option value="male">Male</option>
+                                              <option value="female">Female</option>       
+                                        </select>
+
+                                        @if ($errors->has('sex'))
+                                            <span class="invalid-feedback" role="alert">
+                                                <strong>{{ $errors->first('sex') }}</strong>
+                                            </span>
+                                        @endif
+                                   </div>
+                               </div>                           
+                            </div>
+                            <div class="col-md-6">
+                                    <div class="form-group row">
+                                        <label for="job_id" class="col-md-4 col-form-label text-md-right">{{ __('Employee ID') }}</label>
+
+                                        <div class="col-md-8">
+                                            <input id="job_id" type="text" class="form-control{{ $errors->has('job_id') ? ' is-invalid' : '' }}" name="job_id" value="{{ old('job_id') }}" required autofocus>
+
+                                            @if ($errors->has('job_id'))
+                                                <span class="invalid-feedback" role="alert">
+                                                    <strong>{{ $errors->first('job_id') }}</strong>
+                                                </span>
+                                            @endif
+                                       </div>
+                                   </div>                              
+                            </div>    
+                        </div>    
+
+
+
+
+
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group row">
+                                    <label for="job_id" class="col-md-4 col-form-label text-md-right">{{ __('Employee Machine IP') }}</label>
+
+                                    <div class="col-md-8">
+                                        <input id="local_ip" type="text" class="form-control{{ $errors->has('local_ip') ? ' is-invalid' : '' }}" name="local_ip" value="{{ old('local_ip') }}" required autofocus>
+
+                                        @if ($errors->has('local_ip'))
+                                            <span class="invalid-feedback" role="alert">
+                                                <strong>{{ $errors->first('local_ip') }}</strong>
+                                            </span>
+                                        @endif
+                                    </div>
+                                </div>                            
+                            </div>    
+                            <div class="col-md-6">
+                                <div class="form-group row">
+                                    <label for="email" class="col-md-4 col-form-label text-md-right">{{ __('E-Mail Address') }}</label>
+
+                                    <div class="col-md-8">
+                                        <input id="email" type="email" class="form-control{{ $errors->has('email') ? ' is-invalid' : '' }}" name="email" value="{{ old('email') }}" required>
+
+                                        @if ($errors->has('email'))
+                                            <span class="invalid-feedback" role="alert">
+                                                <strong>{{ $errors->first('email') }}</strong>
+                                            </span>
+                                        @endif
+                                    </div>
+                                </div>                             
+                            </div>
+                        </div>      
+
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group row">
+                                    <label for="password" class="col-md-4 col-form-label text-md-right">{{ __('Password') }}</label>
+
+                                    <div class="col-md-8">
+                                        <input id="password" type="password" class="form-control{{ $errors->has('password') ? ' is-invalid' : '' }}" name="password" required>
+
+                                        @if ($errors->has('password'))
+                                            <span class="invalid-feedback" role="alert">
+                                                <strong>{{ $errors->first('password') }}</strong>
+                                            </span>
+                                        @endif
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group row">
+                                    <label for="password-confirm" class="col-md-4 col-form-label text-md-right">{{ __('Confirm Password') }}</label>
+
+                                    <div class="col-md-8">
+                                        <input id="password-confirm" type="password" class="form-control" name="password_confirmation" required>
+                                    </div>
+                                </div>                                
+                            </div>    
+                        </div>
+                        <input type="hidden" name="common_ip" value="<?php echo  $_SERVER['REMOTE_ADDR']; ?>">
+                        <div class="form-group row mb-0">
+                            <div class="col-md-6 offset-md-2">
+                                <button type="submit" class="btn btn-primary">
+                                    {{ __('Register') }}
+                                </button>
+                            </div>
+                        </div>

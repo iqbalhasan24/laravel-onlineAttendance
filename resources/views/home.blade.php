@@ -39,21 +39,20 @@
                           @foreach($data as $values)
                             <tr>                        
                                 <td>
-                                    <a href=""> 
-                                      {{ $values->first_name }} {{ $values->last_name}}
+                                    <a href="{{ route('admin.attendance.details', $values->id) }}"> 
+                                      {{ ucfirst($values->first_name) }} {{ ucfirst($values->last_name)}}
                                     </a> 
                                 </td>
                                 <td> {{ $values->job_id }} </td>
                                 <td>{{ $values->local_ip}}</td>
                                 <td>{{ $values->last_name}}</td>
-                                <td><a href=""> Edit</a> </td>                                
+                                <td><a href="{{ route('admin.edit.employee', $values->id) }}"> Edit</a> </td>                                
                             </tr>
                           @endforeach
                       @endif    
                   @endif    
                     
                 </tbody>
-              
             </table>
             </div>
             </div>

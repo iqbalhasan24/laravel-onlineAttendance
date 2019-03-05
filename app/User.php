@@ -38,10 +38,11 @@ class User extends Authenticatable
     ];
 
 
-    public function userAttendence()
+    public function userAttendances()
         {
-            return $this->belongsTo('App\Attendence', 'user_id', 'id');
+            $this->hasMany('App\Attendance', 'user_id', 'id');
         }
 
-
+    
 }
+

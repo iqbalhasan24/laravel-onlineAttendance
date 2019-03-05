@@ -33,11 +33,10 @@
           </a>
         </li>
         <li class="dropdown-divider"></li>
-        <li class="dropdown-item"><i class="icon-envelope mr-2"></i> Inbox</li>
-        <li class="dropdown-divider"></li>
-        <li class="dropdown-item"><i class="icon-wallet mr-2"></i> Account</li>
-        <li class="dropdown-divider"></li>
-        <li class="dropdown-item"><i class="icon-settings mr-2"></i> Setting</li>
+        <li class="dropdown-item">
+           <a  href="{{ route('staff.profile',  Auth::user()->id) }}">
+              <i class="icon-settings mr-2"></i>Account  Setting</li>
+            </a>
         <li class="dropdown-divider"></li>
         <li class="dropdown-item">
           <a  href="{{ route('logout') }}" onclick="event.preventDefault();
