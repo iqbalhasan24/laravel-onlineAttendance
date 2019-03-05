@@ -46,27 +46,60 @@
                                 <tbody>                                    
                                     <tr>
                                         <td>
-                                            <strong>Abby</strong> joined ACME Project Team in <strong>`Collaboration`</strong>
+                                            <strong>Name:</strong>  
+                                            {{ ucfirst($data->first_name) }}
+                                            {{ ucfirst($data->last_name) }}
                                         </td>
                                     </tr>
                                     <tr>
                                         <td>
-                                            <strong>Gary</strong> deleted My Board1 in <strong>`Discussions`</strong>
+                                            <strong>Emai:</strong>
+                                            {{ $data->email }}
+                                        </td>
+                                    </tr>    
+                                    <tr>
+                                        <td>
+                                            <strong>DOB:</strong>  
+                                            {{ $data->dob }}
+                                        </td>
+                                    </tr>        
+
+                                    <tr>
+                                        <td>
+                                            <strong>Sex:</strong>  
+                                            {{ ucfirst($data->sex) }}
+                                        </td>
+                                    </tr>
+
+                                    <tr>
+                                        <td>
+                                            <strong>User Type:</strong>  
+                                            {{ $data->user_role }}
                                         </td>
                                     </tr>
                                     <tr>
                                         <td>
-                                            <strong>Kensington</strong> deleted MyBoard3 in <strong>`Discussions`</strong>
+                                            <strong>Department:</strong>  
+                                            {{ $data->department_name }}
                                         </td>
                                     </tr>
                                     <tr>
                                         <td>
-                                            <strong>John</strong> deleted My Board1 in <strong>`Discussions`</strong>
+                                            <strong>User ID:</strong>  
+                                            {{ $data->job_id }}
                                         </td>
                                     </tr>
                                     <tr>
                                         <td>
-                                            <strong>Skell</strong> deleted his post Look at Why this is.. in <strong>`Discussions`</strong>
+                                            <strong>Matchin IP:</strong>  
+                                            {{ $data->local_ip }}
+                                        </td>
+                                    </tr>
+                                    
+                                    <tr>
+                                        <td>
+                                            <strong>Network IP:</strong>  
+                                            {{ $data->common_ip }}
                                         </td>
                                     </tr>
                                 </tbody>

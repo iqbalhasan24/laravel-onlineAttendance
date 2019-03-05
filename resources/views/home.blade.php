@@ -50,10 +50,18 @@
                                       $arr=$values['userAttendances'];
                                       $total=0.0;
                                          foreach($arr as $h_key => $h_value):
-                                             $hour =  (float) $h_value['total_hour'];
-                                               $total +=$hour ;
+                                            $cy= \Carbon\Carbon::now()->format('Y');
+                                            $cm= \Carbon\Carbon::now()->format('m'); 
+                                            $attendance_in = $h_value['attendance_in'];   
+                                            $att_y = date('Y', strtotime($attendance_in));
+                                            $att_m = date('m', strtotime($attendance_in));
+                                            if( $cy == $att_y && $cm == $att_m  ){
+                                                $hour =  (float) $h_value['total_hour'];
+                                                $total +=$hour;
+                                            }                                            
                                          endforeach;                                    
-                                           echo $total;                                     ?>
+                                          echo $total;                                        
+                                       ?>
                                 </td>
                                 <td><a href="{{ route('admin.edit.employee', $values->id) }}"> Edit</a> </td>                                
                             </tr>

@@ -45,32 +45,8 @@ class HomeController extends Controller
 
     public function monthly_attendance(){
           
-        $pageTitle = "Monthly Attendance";
-        //$data = User::where('status', '!=','cancel')->get();
-        
+        $pageTitle = "Monthly Attendance";        
         $data = User::with('userAttendances')->get();
-
-
-        /*foreach ($data as $key => $value) {
-
-            $arr=$value['userAttendances'];
-           
-              $total=0.0;
-             foreach ($arr as $h_key => $h_value){
-                 $hour =  (float) $h_value['total_hour'];
-                 $total +=$hour ;
-                 echo "<p>hour={$hour}  Total={$total}</p>";
-             }
-                  
-        }
-        die();
-        */
-        //dd($data, 'ok');
-       //$data = User::where('status', '!=','cancel')->find(2);
-
-       // dd($data->userAttendances());
-       
-
         return view('home', [
             'data' => $data,
             'pageTitle' => $pageTitle
@@ -84,10 +60,15 @@ class HomeController extends Controller
 
         $pageTitle = "Attendance Details";
         $data = Attendance::where('user_id', $id)
-              ->paginate(10);
+                         ->orderBy('id', 'DESC')    
+                        ->paginate(10);
+        $user=User::select('first_name','last_name','job_id')->where('id', $id)->first();
+
+        //dd($user->first_name);                
         return view('pages.attendance-details', [
+            'pageTitle' => $pageTitle,
             'data' => $data,
-            'pageTitle' => $pageTitle
+            'user' => $user
         ]);
 
 
