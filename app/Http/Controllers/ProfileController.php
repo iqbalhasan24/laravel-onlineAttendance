@@ -37,11 +37,13 @@ class ProfileController extends Controller
         ]);
      }
 
+
    public function edit_employee(Request $request, $id){
    		$pageTitle="Edit employee Information";
         $formdata = User::where('id', $id)->first();
         $data = User::where('status', '!=','cancel')->orderBy('id', 'DESC')
               ->paginate(10);
+
    		return view('pages.edit-staff', [
             'pageTitle' => $pageTitle,
             'formdata' => $formdata,
@@ -60,6 +62,7 @@ class ProfileController extends Controller
    		dd($userModel);
 
    }
+
 
 public function staf_profile(Request $request, $id){
       $pageTitle="MY Profile";
@@ -84,10 +87,6 @@ public function edit_profile(Request $request, $id){
         ]);
 
    }
-
-
-
-
 
 
 }
