@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\User;
-use App\Attendence;
+use App\Attendance;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Session;
 use App\Http\Controllers\Controller;
@@ -46,14 +46,30 @@ class HomeController extends Controller
     public function monthly_attendance(){
           
         $pageTitle = "Monthly Attendance";
-        //$data = User::where('status', '!=','cancel')->paginate(10);
+        //$data = User::where('status', '!=','cancel')->get();
+        
+        $data = User::with('userAttendances')->get();
+
+
+        /*foreach ($data as $key => $value) {
+
+            $arr=$value['userAttendances'];
+           
+              $total=0.0;
+             foreach ($arr as $h_key => $h_value){
+                 $hour =  (float) $h_value['total_hour'];
+                 $total +=$hour ;
+                 echo "<p>hour={$hour}  Total={$total}</p>";
+             }
+                  
+        }
+        die();
+        */
         //dd($data, 'ok');
-       $data = User::where('status', '!=','cancel')
-              ->paginate(10);
-        //$data = User::with('user')->find(1)->get();
-        /* $data = Attendance::where('user_id', $id)
-              ->paginate(10);
-        dd($data);*/
+       //$data = User::where('status', '!=','cancel')->find(2);
+
+       // dd($data->userAttendances());
+       
 
         return view('home', [
             'data' => $data,
@@ -67,7 +83,7 @@ class HomeController extends Controller
      public function attendance_details($id){
 
         $pageTitle = "Attendance Details";
-        $data = Attendence::where('user_id', $id)
+        $data = Attendance::where('user_id', $id)
               ->paginate(10);
         return view('pages.attendance-details', [
             'data' => $data,

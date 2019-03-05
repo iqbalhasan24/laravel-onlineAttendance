@@ -1,7 +1,7 @@
 <?php
 
 namespace App;
-
+use App\Attendance;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
@@ -40,7 +40,7 @@ class User extends Authenticatable
 
     public function userAttendances()
         {
-            $this->hasMany('App\Attendance', 'user_id', 'id');
+            return $this->hasMany(Attendance::class, 'user_id', 'id');
         }
 
     

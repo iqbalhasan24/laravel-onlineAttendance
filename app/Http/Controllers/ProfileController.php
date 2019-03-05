@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 use App\User;
-use App\Attendence;
+use App\Attendance;
 use Illuminate\Database\Seeder;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Session;

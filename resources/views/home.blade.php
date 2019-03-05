@@ -36,7 +36,7 @@
 
                   @if(!$data->isEmpty())
                       @if(isset($data))
-                          @foreach($data as $values)
+                          @foreach($data as $key => $values) 
                             <tr>                        
                                 <td>
                                     <a href="{{ route('admin.attendance.details', $values->id) }}"> 
@@ -45,7 +45,16 @@
                                 </td>
                                 <td> {{ $values->job_id }} </td>
                                 <td>{{ $values->local_ip}}</td>
-                                <td>{{ $values->last_name}}</td>
+                                <td>
+                                 <?php
+                                      $arr=$values['userAttendances'];
+                                      $total=0.0;
+                                         foreach($arr as $h_key => $h_value):
+                                             $hour =  (float) $h_value['total_hour'];
+                                               $total +=$hour ;
+                                         endforeach;                                    
+                                           echo $total;                                     ?>
+                                </td>
                                 <td><a href="{{ route('admin.edit.employee', $values->id) }}"> Edit</a> </td>                                
                             </tr>
                           @endforeach
