@@ -8,6 +8,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Session;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Hash;
 use DateTime;
 
 class ProfileController extends Controller
@@ -53,16 +54,6 @@ class ProfileController extends Controller
    }
 
 
-   public function update_employee(Request $Request, $id){
-
-   		$input = $Request->all();	
-        $userModel = User::where('id', $id)->first();
-
-        
-   		dd($userModel);
-
-   }
-
 
 public function staf_profile(Request $request, $id){
       $pageTitle="MY Profile";
@@ -74,6 +65,32 @@ public function staf_profile(Request $request, $id){
         ]);
 
    }
+
+
+public function update_profile(Request $request, $id){
+      $pageTitle    ="Profile Update";
+      $input        = $request->all();      
+      $dob          = trim($input['dob']);
+      $userModel    =User::where('id', $id)->first();
+      if($dob !=""){
+          $userModel->dob  = $dob;
+      }else{
+         $userModel->dob  = $userModel->dob;        
+      }
+
+    try {
+            $userModel->first_name =trim($input['first_name']);
+            $userModel->last_name  =trim($input['last_name']);
+            $userModel->email      =trim($input['email']);
+            $userModel->update();
+            DB::commit();
+        } catch (\Exception $e) {
+            DB::rollback();
+        }
+      return redirect()->back();
+   }
+
+
 
 public function edit_profile(Request $request, $id){
       $pageTitle="Edit employee Information";
@@ -87,6 +104,32 @@ public function edit_profile(Request $request, $id){
         ]);
 
    }
+
+
+
+public function update_employee_profile(Request $request, $id){
+      $pageTitle    ="Employee Profile Update";
+      $input        = $request->all();      
+      $dob          = trim($input['dob']);
+      $userModel    =User::where('id', $id)->first();
+      if($dob !=""){
+          $userModel->dob  = $dob;
+      }else{
+         $userModel->dob  = $userModel->dob;        
+      }
+
+    try {
+            $userModel->first_name =trim($input['first_name']);
+            $userModel->last_name  =trim($input['last_name']);
+            $userModel->email      =trim($input['email']);
+            $userModel->update();
+            DB::commit();
+        } catch (\Exception $e) {
+            DB::rollback();
+        }
+      return redirect()->back();
+   }
+
 
 
 }

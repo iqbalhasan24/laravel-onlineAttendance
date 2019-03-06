@@ -12,7 +12,8 @@
             <div class="card">
                 <div class="card-body">
 
-                <form>
+                <form method="POST" action="{{route('admin.update.employee.profile', $formdata->id)}}">
+                        @csrf
                    @if(isset($formdata))                 
                  
                     <div class="row">  

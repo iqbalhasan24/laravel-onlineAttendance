@@ -54,7 +54,13 @@
                                       $total_hour= $values->total_hour;
                                       $total_hour= number_format($total_hour, 2);
                                     ?>
+                                    @if( $total_hour < 8.2)
+                                    <span style="color: #f00;">
+                                    @else
+                                    <span>
+                                    @endif
                                     {{ $total_hour }}
+                                    </span>
                                   </td>                           
                             </tr>
                           @endforeach

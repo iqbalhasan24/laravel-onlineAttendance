@@ -39,6 +39,12 @@ Route::any('edit-employee/{id}', [
 'uses' => 'ProfileController@edit_employee'
 ]);
 
+Route::any('update-employee-profile/{id}', [
+'as' => 'admin.update.employee.profile',
+'uses' => 'ProfileController@update_employee_profile'
+]);
+
+
 
 Route::get('monthly-attendance', [
 'as' => 'admin.monthly.attendance',
@@ -55,17 +61,10 @@ Route::get('individual-employee-attendance/{id}', [
 'uses' => 'HomeController@individual_attendance'
 ]);
 
-
-
 Route::any('staff-profile/{id}', [
 'as' => 'staff.profile',
 'uses' => 'ProfileController@staf_profile'
 ]);
-Route::get('edit-profile/{id}', [
-'as' => 'staff.edit.profile',
-'uses' => 'ProfileController@edit_profile'
-]);
-
 
 Route::any('update-profile/{id}', [
 'as' => 'update.staff.profile',

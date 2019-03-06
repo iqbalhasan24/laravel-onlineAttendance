@@ -1,20 +1,11 @@
 @extends('layouts.admin-app')
 
 @section('content')
-      <!-- Breadcrumb-->
-      <div class="row pt-2 pb-2">
-        <div class="col-sm-9">
-          <h4 class="page-title">Data Tables</h4>         
-       </div>
-     </div>
-
-      
-
       <!-- +++++++++++++++++++++++++++++++++++++++++++++++++++++ -->
       <div class="row">
         <div class="col-lg-12">
           <div class="card">
-            <div class="card-header"><i class="fa fa-table"></i> {{ $pageTitle}} 
+            <div class="card-header"><i class="fa fa-table"></i> {{ $pageTitle}} ( Month of {{  \Carbon\Carbon::now()->format('M') }})
                         @if (Route::has('register'))
                             <span class="pull-right"> <a href="{{ route('register') }}" class="bnt btn-info"> Add New Employee</a></span>
                         @endif
@@ -28,8 +19,8 @@
                         <th>Name</th>
                         <th>Employee ID </th>
                         <th>Device ID</th>
-                        <th>Paid Hours(This Month)</th>
-                        <th>Action</th>
+                        <th>Total Paid Hours(This Month)</th>
+                        
                     </tr>
                 </thead>
                 <tbody>
@@ -60,10 +51,9 @@
                                                 $total +=$hour;
                                             }                                            
                                          endforeach;                                    
-                                          echo $total;                                        
+                                          echo  number_format($total, 2);                                        
                                        ?>
-                                </td>
-                                <td><a href="{{ route('admin.edit.employee', $values->id) }}"> Edit</a> </td>                                
+                                </td>                                
                             </tr>
                           @endforeach
                       @endif    
