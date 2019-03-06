@@ -3,7 +3,7 @@
       <!-- Breadcrumb-->
       <div class="row pt-2 pb-2">
         <div class="col-sm-9">
-          <h4 class="page-title">Data Tables</h4>         
+          <h4 class="page-title">{{$pageTitle}}</h4>         
        </div>
      </div>
 
@@ -12,9 +12,9 @@
             <div class="card">
                 <div class="card-body">
 
-                <form method="POST" action="{{route('admin.update.employee.profile', $formdata->id)}}">
-                        @csrf
                    @if(isset($formdata))                 
+                  <form method="POST" action="{{route('admin.update.employee.profile', $formdata->id)}}">
+                   @csrf
                  
                     <div class="row">  
                       <div class="col-md-3">  
@@ -118,13 +118,6 @@
                             
                           </div>
                       </div>
-
-                       <div class="col-md-3"> 
-                         <div class="form-group">
-                            <label for="input-13">Photo</label>
-                            <input type="file" class="form-control" name="">
-                         </div>
-                      </div>
                     </div>
                     <div class="row">
                     <div class="col-md-12"> 
@@ -133,8 +126,8 @@
                        </div>
                       </div>
                     </div>
-                @endif
                   </form>
+                @endif
                 </div>
             </div>
           </div>

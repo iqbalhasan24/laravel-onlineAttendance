@@ -1,113 +1,93 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
-    <head>
-        <meta charset="utf-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
+<head>
+  <meta charset="utf-8"/>
+  <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"/>
+  <meta name="description" content=""/>
+  <meta name="author" content=""/>
+  <title>Login</title>
+  <!--favicon-->
+  <link rel="icon" href="{{ asset('assets/images/favicon.ico')}}" type="image/x-icon">
+  <!-- Bootstrap core CSS-->
+  <link href="{{ asset('assets/css/bootstrap.min.css')}}" rel="stylesheet"/>
+  <!-- animate CSS-->
+  <link href="{{ asset('assets/css/animate.css')}}" rel="stylesheet" type="text/css"/>
+  <!-- Icons CSS-->
+  <link href="{{ asset('assets/css/icons.css')}}" rel="stylesheet" type="text/css"/>
+  <!-- Custom Style-->
+  <link href="{{ asset('assets/css/app-style.css')}}" rel="stylesheet"/>
+  
+</head>
 
-        <title>Laravel</title>
+<body>
+ <!-- Start wrapper-->
+ <div id="wrapper">
+ 	<div class="row">
+ 		<div class="col-md-10 offset-md-1">
+ 				<span class="pull-right" style="margin-top: 10px;">
 
-        <!-- Fonts -->
-        <link href="https://fonts.googleapis.com/css?family=Nunito:200,600" rel="stylesheet">
-
-        <!-- Styles -->
-        <style>
-            html, body {
-                background-color: #0A243E;
-                color: #636b6f;
-                font-family: 'Nunito', sans-serif;
-                font-weight: 200;
-                height: 100vh;
-                margin: 0;
-            }
-
-            .full-height {
-                height: 100vh;
-            }
-
-            .flex-center {
-                align-items: center;
-                display: flex;
-                justify-content: center;
-            }
-
-            .position-ref {
-                position: relative;
-            }
-
-            .top-right {
-                position: absolute;
-                right: 10px;
-                top: 18px;
-            }
-
-            .content {
-                text-align: center;
-            }
-
-            .title {
-                font-size: 84px;
-            }
-
-            .links > a {
-                color: #636b6f;
-                padding: 0 25px;
-                font-size: 13px;
-                font-weight: 600;
-                letter-spacing: .1rem;
-                text-decoration: none;
-                text-transform: uppercase;
-            }
-
-            .m-b-md {
-                margin-bottom: 30px;
-            }
-        </style>
-    </head>
-    <body>
-        <div class="flex-center position-ref full-height">
-
-            @if (Route::has('login'))
-                <div class="top-right links">
+ 				@if (Route::has('login'))
+                
                     @auth
                         <a href="{{ url('/dashboard') }}">Home</a>
                     @else
                         <a href="{{ route('login') }}">Login</a>                        
                     @endauth
-                </div>
-            @endif
+                
+            	@endif
+ 			</span>
+ 		</div>
+ 	</div>
+ 	
+	<div class="card border-primary border-top-sm border-bottom-sm card-authentication1 mx-auto my-5 animated bounceInDown">
 
-            <div class="content">
+		<div class="card-body">
+		 <div class="card-content p-2">
+		 	<div class="text-center">
+		 		<img src="assets/images/logo-icon.png">
+		 	</div>
+		  <div class="card-title text-uppercase text-center py-3">Attendance</div>
+		    
+		    <form method="POST" action="{{ route('post.staff.in.out') }}">
+                @csrf 
+			  <div class="form-group">
+			   <div class="position-relative has-icon-right">
+				  <label for="exampleInputUsername" class="sr-only">Username</label>
+				  
+				  <input type="text" id="exampleInputUsername" name="job_id" value="{{ old('job_id') }}" class="form-control form-control-rounded" placeholder="User ID">
+				  <div class="form-control-position">
+					  <i class="icon-user"></i>
+				  </div>
 
-                <div class="links">
-                     <form method="POST" action="{{ route('post.staff.in.out') }}">
-                        @csrf                       
-                            <div class="col-lg-6">                             
+				  <input type="hidden" name="common_ip" value="<?php echo  $_SERVER['REMOTE_ADDR']; ?>">
+	                <input type="hidden" name="local_ip" value="<?php echo getHostByName(getHostName());?>">
+	                @if ($errors->has('job_id'))
+	                    <span class="invalid-feedback" role="alert">
+	                        <strong>{{ $errors->first('job_id') }}</strong>
+	                    </span>
+	                @endif
+			   </div>
+			   <div style="text-align: center;">
+					   <span style="color: #f00;"> 
+		                            @if(session('message'))
+		                              {{session('message')}}
+		                            @endif
+		                </span>			   	
+			   </div>
+			  </div>
+			 <button type="submit" class="btn btn-primary shadow-primary btn-round btn-block waves-effect waves-light">Sign In</button>
+			 </form>
+		   </div>
+		  </div>
 
-                                    <div class="col-md-6">
-                                        <input id="job_id" type="text" class="form-control{{ $errors->has('job_id') ? ' is-invalid' : '' }}" name="job_id" value="{{ old('job_id') }}" placeholder="User ID" required autofocus>
-                                        <input type="hidden" name="common_ip" value="<?php echo  $_SERVER['REMOTE_ADDR']; ?>">
-                                        <input type="hidden" name="local_ip" value="<?php echo getHostByName(getHostName());?>">
-                                        @if ($errors->has('job_id'))
-                                            <span class="invalid-feedback" role="alert">
-                                                <strong>{{ $errors->first('job_id') }}</strong>
-                                            </span>
-                                        @endif
-                                         <button type="submit" class="btn btn-primary">
-                                            {{ __('Login') }}
-                                        </button>
-                                    </div>
-
-                                    <div class="col-md-6">
-                                        <h2 style="color: #f00;"> 
-                                          @if(session('message'))
-                                          {{session('message')}}
-                                        @endif
-                                        </h2>
-                                    </div>
-                            </div>
-                    </form>
-                </div>
-            </div>
-        </div>
-    </body>
+	     </div>
+    
+    <a href="javaScript:void();" class="back-to-top"><i class="fa fa-angle-double-up"></i> </a>
+	</div>
+  <script src="{{ asset('assets/js/jquery.min.js')}}"></script>
+  <script src="{{ asset('assets/js/popper.min.js')}}"></script>
+  <script src="{{ asset('assets/js/bootstrap.min.js')}}"></script>
+ 
+</body>
 </html>

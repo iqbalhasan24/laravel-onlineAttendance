@@ -134,7 +134,8 @@
                         <div class="form-group row">
                             <label class="col-lg-3 col-form-label form-control-label">DOB</label>
                             <div class="col-lg-9">
-                                <input class="form-control" type="date" name="dob" value="{{ old( 'dob', $data->dob) }}" >
+
+                                <input class="form-control" type="text" id="autoclose-datepicker" name="dob" value="{{ old( 'dob', $data->dob) }}" >
                             </div>
                         </div>
 

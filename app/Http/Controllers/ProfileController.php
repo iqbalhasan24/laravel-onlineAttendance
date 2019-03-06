@@ -111,17 +111,32 @@ public function update_employee_profile(Request $request, $id){
       $pageTitle    ="Employee Profile Update";
       $input        = $request->all();      
       $dob          = trim($input['dob']);
-      $userModel    =User::where('id', $id)->first();
+      $newPassword  = trim($input['password'])? trim($input['password']) :"";
+      $userModel    =User::where('id', $id)->first();      
+
       if($dob !=""){
           $userModel->dob  = $dob;
       }else{
          $userModel->dob  = $userModel->dob;        
       }
 
-    try {
-            $userModel->first_name =trim($input['first_name']);
-            $userModel->last_name  =trim($input['last_name']);
-            $userModel->email      =trim($input['email']);
+      if($newPassword !=""){
+          $userModel->password =   Hash::make($newPassword);       
+        }
+      
+      //dd($input);
+
+        try{
+            $userModel->first_name      =trim($input['first_name']);
+            $userModel->last_name       =trim($input['last_name']);
+            $userModel->sex             =trim($input['sex']);            
+            $userModel->dob             =trim($input['dob']);
+            $userModel->department_name =trim($input['department_name']);
+            $userModel->user_role       =trim($input['user_role']);
+            $userModel->status          =trim($input['status']);
+            $userModel->job_id          =trim($input['job_id']);
+            $userModel->local_ip        =trim($input['local_ip']);
+           
             $userModel->update();
             DB::commit();
         } catch (\Exception $e) {
